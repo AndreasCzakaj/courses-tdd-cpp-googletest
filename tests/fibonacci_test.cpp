@@ -8,8 +8,22 @@
 // ============================================================================
 
 TEST(FibonacciTest, ReturnsZeroForIndexZero) {
+    // given / Arrange
     Fibonacci fib;
+    int index = 0;
+
+    // when / Act
+    auto actual = fib.calc(index);
+
+    // then / Assert
+    int expected = 0;
+    EXPECT_EQ(actual, expected);
+
+    // this is the same but compacted:
     EXPECT_EQ(fib.calc(0), 0);
+
+    // this is the same but different: will STOP the test on failure:
+    ASSERT_EQ(fib.calc(0), 0);
 }
 
 TEST(FibonacciTest, DISABLED_ReturnsOneForIndexOne) {
