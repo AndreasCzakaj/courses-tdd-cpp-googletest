@@ -32,7 +32,7 @@ add_library(fibonacci_lib src/fibonacci.cpp)
 # Test executable
 add_executable(fibonacci_tests tests/fibonacci_test.cpp)
 add_executable(matchers_tests tests/matchers_test.cpp)
-target_link_libraries(fibonacci_tests fibonacci_lib gtest_main)
+target_link_libraries(fibonacci_tests fibonacci_lib gtest_main gmock_main)
 target_link_libraries(matchers_tests gtest_main gmock_main nlohmann_json::nlohmann_json)
 
 # Register tests with CTest
