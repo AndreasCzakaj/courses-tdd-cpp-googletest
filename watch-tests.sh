@@ -8,7 +8,7 @@ echo "Press Ctrl+C to stop"
 echo ""
 
 # Watch source files and rebuild+test on change
-while true; do
+#while true; do
     find src include tests -type f \( -name "*.cpp" -o -name "*.h" \) | \
     entr -d -c bash -c "
         echo '🔨 Building...'
@@ -17,9 +17,15 @@ while true; do
             echo ''
             echo '🧪 Running tests...'
             echo ''
-            ./fibonacci_tests --gtest_color=yes
+            for test in *_tests; do
+                if [ -x \"\$test\" ]; then
+                    echo \"Running \$test...\"
+                    ./\$test --gtest_color=yes
+                    echo ''
+                fi
+            done
         else
             echo '❌ Build failed'
         fi
     "
-done
+#done
