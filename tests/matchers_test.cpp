@@ -35,3 +35,8 @@ struct Person {
 };
 
 Person person = {1, "Skippy", "Rayne", "srayne0@dot.gov", "229.183.132.150"};
+
+
+Person loadPerson() {
+    throw std::runtime_error("oops");
+}
