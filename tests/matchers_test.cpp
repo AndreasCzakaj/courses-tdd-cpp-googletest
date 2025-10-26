@@ -17,6 +17,9 @@ using ::testing::HasSubstr;
 using ::testing::MatchesRegex;
 using ::testing::Field;
 using ::testing::FieldsAre;
+using ::testing::Throws;
+using ::testing::Property;
+using ::testing::StrEq;
 
 std::string email = "andreas.czakaj@binary-stars.eu";
 
@@ -105,6 +108,9 @@ struct Person {
     }
 };
 
+Person person = {1, "Skippy", "Rayne", "srayne0@dot.gov", "229.183.132.150"};
+
+
 TEST(MatchersTest, ObjectIsEqual) {
     Person person = {1, "Skippy", "Rayne", "srayne0@dot.gov", "229.183.132.150"};
     Person expected = {1, "Skippy", "Rayne", "srayne0@dot.gov", "229.183.132.150"};
@@ -130,4 +136,21 @@ TEST(MatchersTest, ObjectContainsSubstructure) {
         Field(&Person::lastName, StrEq("Rayne")),
         Field(&Person::email, StrEq("srayne0@dot.gov"))
     ));
+}
+
+
+
+
+Person loadPerson() {
+    throw std::runtime_error("oops");
+}
+
+TEST(MatchersTest, ItShouldFailHere) {
+    auto action = [] { loadPerson(); };
+    EXPECT_THAT(
+        action,
+        Throws<std::runtime_error>(
+            Property(&std::runtime_error::what, StrEq("oops"))
+        )
+    ) << "It should throw runtime_error with 'oops' message";
 }
