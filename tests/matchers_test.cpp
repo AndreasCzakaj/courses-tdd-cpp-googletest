@@ -154,3 +154,39 @@ TEST(MatchersTest, ItShouldFailHere) {
         )
     ) << "It should throw runtime_error with 'oops' message";
 }
+
+
+// ============================================================================
+// 1. Create a test class (fixture) that inherits from TestWithParam<T>
+//    T is the type of parameter you want to pass to each test
+// ============================================================================
+
+class SimpleParamTest : public ::testing::TestWithParam<int> {
+    // You can add setup/teardown here if needed
+};
+
+// ============================================================================
+// 2. Write your test using TEST_P (P = Parameterized)
+//    Use GetParam() to get the current parameter value
+// ============================================================================
+
+TEST_P(SimpleParamTest, NumberIsPositive) {
+    int number = GetParam();  // Gets the current parameter
+    EXPECT_GT(number, 0);     // Test that number > 0
+}
+
+TEST_P(SimpleParamTest, NumberIsEven) {
+    int number = GetParam();  // Gets the current parameter
+    EXPECT_EQ(number % 2, 0); // Test that number is even
+}
+
+// ============================================================================
+// 3. Instantiate the test with actual values
+//    This says: "Run all TEST_P tests with these values"
+// ============================================================================
+
+INSTANTIATE_TEST_SUITE_P(
+    EvenNumbers,                    // Name prefix for this set of tests
+    SimpleParamTest,                // Test class name
+    ::testing::Values(2, 4, 6, 8)   // The actual parameter values
+);
