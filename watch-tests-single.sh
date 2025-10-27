@@ -18,13 +18,13 @@ echo ""
             echo ''
             echo '🧪 Running tests...'
             echo ''
-            for test in *_tests; do
-                if [ -x \"\$test\" ]; then
-                    echo \"Running \$test...\"
-                    ./\$test --gtest_color=yes
-                    echo ''
-                fi
-            done
+
+            test='login_service_tests'
+
+            echo \"Running \$test...\"
+            ./\$test --gtest_color=yes
+            echo ''
+            
         else
             echo '❌ Build failed'
         fi
