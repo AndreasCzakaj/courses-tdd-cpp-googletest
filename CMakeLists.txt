@@ -42,6 +42,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 add_library(fibonacci_lib src/fibonacci.cpp)
 add_library(login_service_lib src/login_service.cpp)
 add_library(uss_lib src/uss.cpp)
+add_library(uuid_generator_lib src/uuid_generator.cpp)
 target_link_libraries(uss_lib sqlite3)
 target_link_libraries(login_service_lib uss_lib)
 
@@ -52,6 +53,7 @@ add_executable(matchers_tests tests/matchers_test.cpp)
 add_executable(uss_tests tests/uss_test.cpp)
 add_executable(repository_tests tests/repository_test.cpp)
 add_executable(sqlite_repository_tests tests/sqlite_repository_test.cpp)
+add_executable(uuid_generator_tests tests/uuid_generator_test.cpp)
 
 target_link_libraries(fibonacci_tests fibonacci_lib gtest_main gmock_main)
 target_link_libraries(login_service_tests login_service_lib uss_lib gtest_main gmock_main)
@@ -59,6 +61,7 @@ target_link_libraries(matchers_tests gtest_main gmock_main nlohmann_json::nlohma
 target_link_libraries(uss_tests uss_lib gtest_main gmock_main)
 target_link_libraries(repository_tests uss_lib gtest_main gmock_main sqlite3)
 target_link_libraries(sqlite_repository_tests uss_lib gtest_main gmock_main sqlite3)
+target_link_libraries(uuid_generator_tests uuid_generator_lib gtest_main gmock_main)
 
 # Register tests with CTest
 include(GoogleTest)
@@ -68,3 +71,4 @@ gtest_discover_tests(matchers_tests)
 gtest_discover_tests(uss_tests)
 gtest_discover_tests(repository_tests)
 gtest_discover_tests(sqlite_repository_tests)
+gtest_discover_tests(uuid_generator_tests)
