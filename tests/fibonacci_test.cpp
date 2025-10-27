@@ -12,7 +12,7 @@ using ::testing::Eq;
 // Basic test - this will fail until implemented
 // ============================================================================
 
-TEST(FibonacciTest,  /* DISABLED_ */ReturnZeroForIndexZero) {
+TEST(FibonacciTest,  DISABLED_ReturnZeroForIndexZero) {
     // given / Arrange
     Fibonacci fib;
     int index = 0;
