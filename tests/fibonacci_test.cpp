@@ -21,7 +21,7 @@ TEST(FibonacciTest,  /* DISABLED_ */ReturnZeroForIndexZero) {
     auto actual = fib.calc(index);
     
     // then / Assert
-    int expected = 1;
+    int expected = 0;
     EXPECT_EQ(actual, expected) << "It should yield zero for index zero I";
     EXPECT_THAT(actual, Eq(expected)) << "It should yield zero for index zero II";
     
@@ -53,9 +53,6 @@ TEST(FibonacciTest, DISABLED_ReturnsEightForIndexSix) {
 TEST(FibonacciTest, DISABLED_ReturnsCorrectValueForSmallIndices) {
 }
 
-TEST(FibonacciTest, DISABLED_ReturnsCorrectValueForMediumIndices) {
-}
-
 TEST(FibonacciTest, DISABLED_ReturnsCorrectValueForLargeIndices) {
 }
 
@@ -63,7 +60,4 @@ TEST(FibonacciTest, DISABLED_ThrowsExceptionForNegativeIndices) {
 }
 
 TEST(FibonacciTest, DISABLED_ThrowsExceptionForIndicesTooLarge) {
-}
-
-TEST(FibonacciTest, DISABLED_ExceptionHasDescriptiveMessage) {
 }
